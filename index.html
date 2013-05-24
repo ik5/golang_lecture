@@ -185,6 +185,30 @@ type TV_Show struct {
           </section>
           <section>
             <h2>Unofficial OOP</h2>
+            <pre><code data-trim contenteditable class="go">
+// type TV_Show struct  ...
+
+func (show TV_Show) Show() string {
+   return fmt.Sprintf("%s - S(%s) E(%s)", show.name, show.season, show.episode)
+}
+
+func main() {
+   var show TV_Show
+   show.name    = "Star Trek - Creation of Data"
+   show.episode = "1b"
+   show.season  = "Pilot"
+   fmt.Println(show.Show())
+}
+</code></pre>
+            Output:
+            <pre><code data-trim contenteditable class="no-highlight">
+Star Trek - The next generation - S(Pilot) E(1b)
+            </code></pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1>Basic Flows</h1>
           </section>
         </section>
       </div>
