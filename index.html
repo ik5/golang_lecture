@@ -114,6 +114,38 @@ answer, _  = functionWithError()
 ...</code></pre>
           </section>
           <section>
+            <h2>Functions</h2>
+            <pre><code data-trim contenteditable class="go">...
+import (
+  "errors"
+  "fmt"
+)
+func helloWorld() {
+  fmt.Println("Hello World")
+}
+
+func LifeUniverseAndEverything() int {
+  return 42
+}
+
+func GuessAge(age int) (bool, error) {
+  if age < 0 { return false, errors.New("Age is lower then 0") }
+  if age == 100 { return true, nil }
+  return false, nil
+}
+</pre></code>
+            <pre><code data-trim contenteditable class="go">...
+func main() {
+  fmt.Println(GuessAge(42))
+  fmt.Println(GuessAge(100))
+  fmt.Println(GuessAge(-1))
+}</code></pre>
+Output:
+<pre><code data-trim>
+false &lt;nil&gt;
+true &lt;nil&gt;
+false Age is lower then 0
+</code></pre>
           </section>
         </section>
       </div>
