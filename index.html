@@ -147,6 +147,34 @@ true &lt;nil&gt;
 false Age is lower then 0
 </code></pre>
           </section>
+          <section>
+            <h2>Types</h2>
+            <pre><code data-trim contenteditable class="go">
+// alias
+type Weight float64
+
+// Method (The OOP style of Go)
+func (w *Weight) String() string {
+   return fmt.Sprintf("%.2f kg", *w)
+}
+
+func main() {
+  var w Weight = 42.15
+  fmt.Println(w.String())
+}
+
+            </code></pre>
+            Output:
+<pre><code data-trim>
+42.15 kg
+</code></pre>
+          </section>
+          <section>
+            <h2>Struct</h2>
+            <pre><code data-trim contenteditable class="go">
+
+</code></pre>
+          </section>
         </section>
       </div>
     </div>
