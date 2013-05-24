@@ -53,6 +53,30 @@
         </section>
         <section>
           <section>
+            Basic Code:
+            <pre><code data-trim contenteditable class="go">
+// We use packages to make order
+package main
+
+// We can import libraries
+import (
+  // Using fmt for print commands
+  "fmt"
+)
+
+// Main function ...
+func main() {
+  // External functions starts with capital letter
+  fmt.Println("Hello, World")
+}
+            </code></pre>
+            Output:
+            <pre><code data-trim contenteditable>
+$ go build hello.go
+$ ./hello
+Hello, World
+$
+</code></pre>
           </section>
         </section>
       </div>
