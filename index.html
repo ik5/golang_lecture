@@ -311,6 +311,49 @@ func main() {
 2
             </code></pre>
           </section>
+          <section>
+             <strong>Waiting on channels</strong>
+            <pre><code data-trim contenteditable class="go">
+func fibonacci(c, quit chan int) {
+    x, y := 0, 1
+    for {
+        select {
+        case c <- x:
+            x, y = y, x+y
+        case <-quit:
+            fmt.Println("quit")
+            return
+        }
+    }
+}
+            </code></pre>
+            <pre><code data-trim contenteditable class="go">
+func main() {
+    c := make(chan int)
+    quit := make(chan int)
+    go func() {
+        for i := 0; i < 10; i++ {
+            fmt.Println(<-c)
+        }
+        quit <- 0
+    }()
+    fibonacci(c, quit)
+}
+            </code></pre>
+            <pre><code data-trim contenteditable class="no-highlight">
+0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+quit
+            </code></pre>
+          </section>
         </section>
       </div>
     </div>
