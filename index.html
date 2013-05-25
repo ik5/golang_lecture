@@ -285,10 +285,30 @@ func main() {
     fmt.Println(x, y, x+y)
 }               
             </code></pre>
-          
             Output:
             <pre><code data-trim contenteditable class="no-highlight">
 17 -5 12
+            </code></pre>
+          </section>
+          <section>
+            <h2>Buffered Channels</h2>
+            <pre><code data-trim contenteditable class="go">
+package main
+
+import "fmt"
+
+func main() {
+    c := make(chan int, 2)
+    c <- 1
+    c <- 2
+    fmt.Println(<-c)
+    fmt.Println(<-c)
+}
+            </code></pre>
+            Output:
+            <pre><code data-trim contenteditable class="no-highlight">
+1
+2
             </code></pre>
           </section>
         </section>
