@@ -29,7 +29,7 @@
         </section>
         <section>
           <section>
-            <h1>(And) What is Go... ?</h1>
+            <h1>What is Go... ?</h1>
             <a href="https://en.wikipedia.org/wiki/File:Citizen_G%27kar.JPG"><img src="images/gkar.jpg" alt="G'kar"></a>
             <br>
             <small>Andreas Katsulas R.I.P</small>
@@ -40,7 +40,7 @@
               <li>Cross Platform</li>
               <li>Strong type language</li>
               <li>Garbage collection based</li>
-              <li>Objected Oriented based on Struct Properties</li>
+              <li>Objected Oriented like, using Struct Properties</li>
               <li>Support Concurrent computing development</li>
               <li>Influenced by many programming languages such as C ...</li>
               <li class="fragment">... and <strong>Pascal</strong><br><img src="images/elephant_in_room_800_clr_6740.png" alt="elephant in a room"></li>
@@ -49,13 +49,13 @@
           <section>
             <h1>Ah yes</h1>
             <h1>But what is the ...</h1>
-            <h1>and what is Go</h1>
+            <h1>and what is Go ?</h1>
           </section>
         </section>
         <section>
           <section>
             <h2>Basic Code</h2>
-            <pre><code data-trim contenteditable class="go">
+            <pre><code data-trim class="go">
 // We use packages to make order
 package main
 
@@ -72,7 +72,7 @@ func main() {
 }
             </code></pre>
             <br><h2>Output</h2>
-            <pre><code data-trim contenteditable class="bash">
+            <pre><code data-trim class="bash">
 $ go build hello.go
 $ ./hello
 Hello, World
@@ -81,26 +81,26 @@ $
           </section>
           <section>
             <h2>Variables</h2>
-            <pre><code data-trim contenteditable class="go">...
-// predefine variable
+            <pre><code data-trim class="go">
+// predefine variables
 var (
-     var1 int
-     var2, var3 string
+     var1        int
+     var2, var3  string
     )
 
 var1 = SomeFunction()
 
 // variable on usage
-var2 := SimeFunction()
+var4 := SomeFunction()
 
-// array -> predefined as 0
+// array -&gt; predefined as 0
 arr  := [10]int{}
 // array with values
 arr2 := [2]string{"go", "lang"}
 // compiler compute
 fibonacci := [...]int{1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144}
 </code></pre>
-<pre><code data-trim contenteditable class="go">
+<pre><code data-trim class="go">
 // slices are cool 
 scifi := []string{"babylon 5", "star trek", "doctor who"}
 
@@ -109,14 +109,13 @@ doctor_colors := map[string]string{"rose" : "blonde", "tardis" : "blue", "pond" 
 
 // multiple value
 answer, err := funcWithError()
-
 // Ignore the error return
 answer, _  = functionWithError()
-...</code></pre>
+</code></pre>
           </section>
           <section>
             <h2>Functions</h2>
-            <pre><code data-trim contenteditable class="go">...
+            <pre><code data-trim class="go">
 import (
   "errors"
   "fmt"
@@ -135,7 +134,7 @@ func GuessAge(age int) (bool, error) {
   return false, nil
 }
 </pre></code>
-            <pre><code data-trim contenteditable class="go">...
+            <pre><code data-trim class="go">
 func main() {
   fmt.Println(GuessAge(42))
   fmt.Println(GuessAge(100))
@@ -150,13 +149,13 @@ false Age is lower then 0
           </section>
           <section>
             <h2>Types</h2>
-            <pre><code data-trim contenteditable class="go">
+            <pre><code data-trim class="go">
 // alias
 type Weight float64
 
 // Method (The OOP style of Go)
-func (w *Weight) String() string {
-   return fmt.Sprintf("%.2f kg", *w)
+func (w Weight) String() string {
+   return fmt.Sprintf("%.2f kg", float64(w))
 }
 
 func main() {
@@ -172,7 +171,7 @@ func main() {
           </section>
           <section>
             <h2>Struct</h2>
-            <pre><code data-trim contenteditable class="go">
+            <pre><code data-trim class="go">
 type TV_Show struct {
    name    string // Show name
    genre   string // Show genre
@@ -186,7 +185,7 @@ type TV_Show struct {
           </section>
           <section>
             <h2>Unofficial OOP</h2>
-            <pre><code data-trim contenteditable class="go">
+            <pre><code data-trim class="go">
 // type TV_Show struct  ...
 
 func (show TV_Show) Show() string {
@@ -202,16 +201,16 @@ func main() {
 }
 </code></pre>
             Output:
-            <pre><code data-trim contenteditable class="no-highlight">
+            <pre><code data-trim class="no-highlight">
 Star Trek - The next generation - S(Pilot) E(1b)
             </code></pre>
           </section>
         </section>
         <section>
-          <section>
-            <h1>Basic Flows</h1>
-            <a href="http://commons.wikimedia.org/wiki/File:Water_flows_over_dam_on_the_Waren_Burn_at_Twizell_Mill_-_geograph.org.uk_-_780768.jpg"><img src="images/flows.jpg" alt="water flow"></a>
-          </section>
+          <h1>Basic Flows</h1>
+          <a href="http://commons.wikimedia.org/wiki/File:Water_flows_over_dam_on_the_Waren_Burn_at_Twizell_Mill_-_geograph.org.uk_-_780768.jpg"><img src="images/flows.jpg" alt="water flow"></a>
+        </section>
+        <section>
           <section>
             <h2>Parallel and Concurrency </h2>
             <br>
@@ -229,7 +228,7 @@ Star Trek - The next generation - S(Pilot) E(1b)
           </section>
           <section>
             <h2>Concurrency</h2>
-            <pre><code data-trim contenteditable class="go">
+            <pre><code data-trim class="go">
 package main
 
 import (
@@ -250,7 +249,7 @@ func main() {
 }
             </code></pre>
             Output:
-            <pre><code data-trim contenteditable class="no-highlight">
+            <pre><code data-trim class="no-highlight">
 hello
 world
 hello
@@ -264,7 +263,7 @@ hello
           </section>
           <section>
             <h2>Channels</h2>
-            <pre><code data-trim contenteditable class="go">
+            <pre><code data-trim class="go">
 package main
 import "fmt"
 
@@ -287,13 +286,13 @@ func main() {
 }               
             </code></pre>
             Output:
-            <pre><code data-trim contenteditable class="no-highlight">
+            <pre><code data-trim class="no-highlight">
 17 -5 12
             </code></pre>
           </section>
           <section>
             <h2>Buffered Channels</h2>
-            <pre><code data-trim contenteditable class="go">
+            <pre><code data-trim class="go">
 package main
 
 import "fmt"
@@ -307,14 +306,14 @@ func main() {
 }
             </code></pre>
             Output:
-            <pre><code data-trim contenteditable class="no-highlight">
+            <pre><code data-trim class="no-highlight">
 1
 2
             </code></pre>
           </section>
           <section>
              <strong>Waiting on channels</strong>
-            <pre><code data-trim contenteditable class="go">
+            <pre><code data-trim class="go">
 func fibonacci(c, quit chan int) {
     x, y := 0, 1
     for {
@@ -328,7 +327,7 @@ func fibonacci(c, quit chan int) {
     }
 }
             </code></pre>
-            <pre><code data-trim contenteditable class="go">
+            <pre><code data-trim class="go">
 func main() {
     c := make(chan int)
     quit := make(chan int)
@@ -341,7 +340,7 @@ func main() {
     fibonacci(c, quit)
 }
             </code></pre>
-            <pre><code data-trim contenteditable class="no-highlight">
+            <pre><code data-trim class="no-highlight">
 0
 1
 1
