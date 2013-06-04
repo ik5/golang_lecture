@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Let's (learn) Go</title>
+    <meta name="description" content="Introducing the go programming language aka golang">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="res/css/reveal.min.css">
+    <link rel="stylesheet" href="res/css/theme/night.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="res/lib/css/zenburn.css">
+
+		<!--[if lt IE 9]>
+		<script src="res/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+  <body class="reveal tileflip">
+    <div class="reveal">
+      <div class="slides">
+        <section>
+           <h1>Let's (learn) Go</h1>
+           <a href="http://www.flickr.com/photos/yukop/6779040884/"><img src="images/go_coffe.jpg" alt="go coffe" title="Go Logo"></a><br>
+           <a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="images/cc-by-sa-88x31.png" alt="cc-by"></a>
+        </section>
+        <section>
+          <section>
+            <h1>What is Go... ?</h1>
+            <a href="https://en.wikipedia.org/wiki/File:Citizen_G%27kar.JPG"><img src="images/gkar.jpg" alt="G'kar"></a>
+            <br>
+            <small>Andreas Katsulas R.I.P</small>
+          </section>
+          <section>
+            <ul>
+              <li>Statically compiled programming language</li>
+              <li>Cross Platform</li>
+              <li>Strong type language</li>
+              <li>Garbage collection based</li>
+              <li>Objected Oriented like, using Struct Properties</li>
+              <li>Support Concurrent computing development</li>
+              <li>Influenced by many programming languages such as C ...</li>
+              <li class="fragment">... and <strong>Pascal</strong><br><img src="images/elephant_in_room_800_clr_6740.png" alt="elephant in a room"></li>
+            </ul>
+          </section>
+          <section>
+            <h1>Ah yes</h1>
+            <h1>But what is the ...</h1>
+            <h1>and what is Go ?</h1>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Basic Code</h2>
+            <pre><code data-trim class="go">
+// We use packages to make order
+package main
+
+// We can import libraries
+import (
+  // Using fmt for print commands
+  "fmt"
+)
+
+// Main function ...
+func main() {
+  // External functions starts with capital letter
+  fmt.Println("Hello, World")
+}
+            </code></pre>
+            <br><h2>Output</h2>
+            <pre><code data-trim class="bash">
+$ go build hello.go
+$ ./hello
+Hello, World
+$
+</code></pre>
+          </section>
+          <section>
+            <h2>Variables</h2>
+            <pre><code data-trim class="go">
+// predefine variables
+var (
+     var1        int
+     var2, var3  string
+    )
+
+var1 = SomeFunction()
+
+// variable on usage
+var4 := SomeFunction()
+
+// array -&gt; predefined as 0
+arr  := [10]int{}
+// array with values
+arr2 := [2]string{"go", "lang"}
+// compiler compute
+fibonacci := [...]int{1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144}
+</code></pre>
+<pre><code data-trim class="go">
+// slices are cool 
+scifi := []string{"babylon 5", "star trek", "doctor who"}
+
+// maps (hash/associative array)
+doctor_colors := map[string]string{"rose" : "blonde", "tardis" : "blue", "pond" : "ginger"}
+
+// multiple value
+answer, err := funcWithError()
+// Ignore the error return
+answer, _  = functionWithError()
+</code></pre>
+          </section>
+          <section>
+            <h2>Functions</h2>
+            <pre><code data-trim class="go">
+import (
+  "errors"
+  "fmt"
+)
+func helloWorld() {
+  fmt.Println("Hello World")
+}
+
+func LifeUniverseAndEverything() int {
+  return 42
+}
+
+func GuessAge(age int) (bool, error) {
+  if age < 0 { return false, errors.New("Age is lower then 0") }
+  if age == 100 { return true, nil }
+  return false, nil
+}
+</pre></code>
+            <pre><code data-trim class="go">
+func main() {
+  fmt.Println(GuessAge(42))
+  fmt.Println(GuessAge(100))
+  fmt.Println(GuessAge(-1))
+}</code></pre>
+Output:
+<pre><code data-trim>
+false &lt;nil&gt;
+true &lt;nil&gt;
+false Age is lower then 0
+</code></pre>
+          </section>
+          <section>
+            <h2>Types</h2>
+            <pre><code data-trim class="go">
+// alias
+type Weight float64
+
+// Method (The OOP style of Go)
+func (w Weight) String() string {
+   return fmt.Sprintf("%.2f kg", float64(w))
+}
+
+func main() {
+  var w Weight = 42.15
+  fmt.Println(w.String())
+}
+
+            </code></pre>
+            Output:
+<pre><code data-trim>
+42.15 kg
+</code></pre>
+          </section>
+          <section>
+            <h2>Struct</h2>
+            <pre><code data-trim class="go">
+type TV_Show struct {
+   name    string // Show name
+   genre   string // Show genre
+   channel int    // Channel on TV
+   air     int64  // timestamp when it will be aired
+   rerun   bool   // is it a re-run ?
+   season  string // number of season
+   episode string // number of episode
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>Unofficial OOP</h2>
+            <pre><code data-trim class="go">
+// type TV_Show struct  ...
+
+func (show TV_Show) Show() string {
+   return fmt.Sprintf("%s - S(%s) E(%s)", show.name, show.season, show.episode)
+}
+
+func main() {
+   var show TV_Show
+   show.name    = "Star Trek - Creation of Data"
+   show.episode = "1b"
+   show.season  = "Pilot"
+   fmt.Println(show.Show())
+}
+</code></pre>
+            Output:
+            <pre><code data-trim class="no-highlight">
+Star Trek - The next generation - S(Pilot) E(1b)
+            </code></pre>
+          </section>
+        </section>
+        <section>
+          <h1>Basic Flows</h1>
+          <a href="http://commons.wikimedia.org/wiki/File:Water_flows_over_dam_on_the_Waren_Burn_at_Twizell_Mill_-_geograph.org.uk_-_780768.jpg"><img src="images/flows.jpg" alt="water flow"></a>
+        </section>
+        <section>
+          <section>
+            <h2>Parallel and Concurrency </h2>
+            <br>
+            <ul>
+              <li class="fragment">Setting code to execute in parallel, without touching threads or processes</li>
+              <li class="fragment">Create more then one execution at "the same time"</li>
+              <li class="fragment">Wait for tasks if needed</li>
+              <li class="fragment">Measure tasks execution time</li>
+            </ul>
+            <br><br><br>
+            <span class="fragment"><strong>go</strong> with <strong>channels</strong>
+              <br><br>
+              <a href="http://commons.wikimedia.org/wiki/File:Generic-remote-control-shallow-focus.jpg"><img src="images/remote_control.jpg" alt="remote control"></a>
+            </span>
+          </section>
+          <section>
+            <h2>Concurrency</h2>
+            <pre><code data-trim class="go">
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func say(s string) {
+    for i := 0; i < 5; i++ {
+        time.Sleep(100 * time.Millisecond)
+        fmt.Println(s)
+    }
+}
+
+func main() {
+    go say("world")
+    say("hello")
+}
+            </code></pre>
+            Output:
+            <pre><code data-trim class="no-highlight">
+hello
+world
+hello
+world
+hello
+world
+hello
+world
+hello
+            </code></pre>
+          </section>
+          <section>
+            <h2>Channels</h2>
+            <pre><code data-trim class="go">
+package main
+import "fmt"
+
+func sum(a []int, c chan int) {
+    sum := 0
+    for _, v := range a {
+        sum += v
+    }
+    c &lt;- sum // send sum to c
+}
+
+func main() {
+    a := []int{7, 2, 8, -9, 4, 0}
+    c := make(chan int)
+    go sum(a[:len(a)/2], c)
+    go sum(a[len(a)/2:], c)
+    x, y := &lt;-c, &lt;-c // receive from c
+
+    fmt.Println(x, y, x+y)
+}               
+            </code></pre>
+            Output:
+            <pre><code data-trim class="no-highlight">
+17 -5 12
+            </code></pre>
+          </section>
+          <section>
+            <h2>Buffered Channels</h2>
+            <pre><code data-trim class="go">
+package main
+
+import "fmt"
+
+func main() {
+    c := make(chan int, 2)
+    c &lt;- 1
+    c &lt;- 2
+    fmt.Println(&lt;-c)
+    fmt.Println(&lt;-c)
+}
+            </code></pre>
+            Output:
+            <pre><code data-trim class="no-highlight">
+1
+2
+            </code></pre>
+          </section>
+          <section>
+             <strong>Waiting on channels</strong>
+            <pre><code data-trim class="go">
+func fibonacci(c, quit chan int) {
+    x, y := 0, 1
+    for {
+        select {
+        case c &lt;- x:
+            x, y = y, x+y
+        case &lt;-quit:
+            fmt.Println("quit")
+            return
+        }
+    }
+}
+            </code></pre>
+            <pre><code data-trim class="go">
+func main() {
+    c := make(chan int)
+    quit := make(chan int)
+    go func() {
+        for i := 0; i < 10; i++ {
+            fmt.Println(&lt;-c)
+        }
+        quit &lt;- 0
+    }()
+    fibonacci(c, quit)
+}
+            </code></pre>
+            <pre><code data-trim class="no-highlight">
+0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+quit
+            </code></pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Anyone still alive here ?</h2>
+            <a href="http://commons.wikimedia.org/wiki/File:Pictofigo_-_Idea.png">
+            <img src="images/idea.png" alt="idea"></a>
+          </section>
+        </section>
+      </div>
+    </div>
+		<script src="res/lib/js/head.min.js"></script>
+		<script src="res/js/reveal.min.js"></script>
+
+    <script>
+      Reveal.initialize({
+			  controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'res/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'res/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'res/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'res/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'res/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'res/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'res/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'res/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+    </script>
+  </body> 
+</html>
